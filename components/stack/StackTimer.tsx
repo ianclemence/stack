@@ -212,15 +212,14 @@ export default function StackTimer() {
       >
         {/* Header: emoji tile and delete icon */}
         <View className="flex-row items-center justify-between mb-3">
-          <View className="bg-neutral-50 rounded-xl p-2">
-            <EmojiSelector
-              emoji={editTaskEmoji}
-              onEmojiChange={setEditTaskEmoji}
-              styleVariant="compact"
-            />
-          </View>
+          <EmojiSelector
+            emoji={editTaskEmoji}
+            onEmojiChange={setEditTaskEmoji}
+            styleVariant="compact"
+            backgroundClass={colorClasses[editColor]}
+          />
           <TouchableOpacity
-            className="bg-neutral-100 rounded-full p-2"
+            className="p-2"
             onPress={() => setMode('delete')}
           >
             <Trash size={16} color="#666" />

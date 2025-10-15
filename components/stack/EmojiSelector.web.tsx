@@ -5,19 +5,20 @@ interface EmojiSelectorProps {
   emoji: string;
   onEmojiChange: (emoji: string) => void;
   styleVariant?: 'compact' | 'default';
+  backgroundClass?: string;
 }
 
 // Curated set of common emojis for web fallback
 const commonEmojis = ['🐕', '🏃‍♂️', '📚', '💻', '🍎', '☕', '🎯', '🏋️‍♂️', '🧘‍♀️', '🎨', '🎵', '🌱'];
 
-export default function EmojiSelector({ emoji, onEmojiChange, styleVariant = 'default' }: EmojiSelectorProps) {
+export default function EmojiSelector({ emoji, onEmojiChange, styleVariant = 'default', backgroundClass }: EmojiSelectorProps) {
   const isCompact = styleVariant === 'compact';
   return (
     <TouchableOpacity
       className={
         isCompact
-          ? 'bg-neutral-50 rounded-xl p-2 items-center justify-center'
-          : 'bg-neutral-50 rounded-lg p-3 flex-row items-center space-x-2'
+          ? `${backgroundClass ?? 'bg-neutral-50'} rounded-xl p-2 items-center justify-center`
+          : `${backgroundClass ?? 'bg-neutral-50'} rounded-lg p-3 flex-row items-center space-x-2`
       }
       onPress={() => {
         const currentIndex = commonEmojis.indexOf(emoji);

@@ -6,19 +6,19 @@ interface EmojiSelectorProps {
   emoji: string;
   onEmojiChange: (emoji: string) => void;
   styleVariant?: 'compact' | 'default';
+  backgroundClass?: string;
 }
 
-export default function EmojiSelector({ emoji, onEmojiChange, styleVariant = 'default' }: EmojiSelectorProps) {
+export default function EmojiSelector({ emoji, onEmojiChange, styleVariant = 'default', backgroundClass }: EmojiSelectorProps) {
   const isCompact = styleVariant === 'compact';
+  const base = isCompact
+    ? 'rounded-xl p-2 items-center justify-center'
+    : 'rounded-lg p-3 flex-row items-center space-x-2';
+  const bg = backgroundClass ?? 'bg-neutral-50';
+
   return (
     <EmojiPopup onEmojiSelected={onEmojiChange} style={{ alignSelf: 'flex-start' }}>
-      <View
-        className={
-          isCompact
-            ? 'bg-neutral-50 rounded-xl p-2 items-center justify-center'
-            : 'bg-neutral-50 rounded-lg p-3 flex-row items-center space-x-2'
-        }
-      >
+      <View className={`${bg} ${base}`}>
         <Text className={isCompact ? 'text-xl' : 'text-2xl'}>{emoji}</Text>
         {!isCompact && (
           <Text className="text-neutral-600">Tap to change emoji</Text>
