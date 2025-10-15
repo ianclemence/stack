@@ -12,17 +12,7 @@ import Animated, {
   Easing
 } from 'react-native-reanimated';
 import { AnimatedRollingNumber } from 'react-native-animated-rolling-numbers';
-import { 
-  Play, 
-  Pause, 
-  Edit, 
-  Trash, 
-  X, 
-  Check, 
-  Plus, 
-  Minus,
-  ThumbsUp
-} from 'lucide-react-native';
+import { MaterialIcons } from '@expo/vector-icons';
 import EmojiSelector from './EmojiSelector';
 
 type Mode = 'view' | 'edit' | 'timer' | 'break' | 'delete';
@@ -210,16 +200,16 @@ export default function StackTimer() {
         <View className="flex-row space-x-3">
           <TouchableOpacity
             className="bg-neutral-200 hover:bg-neutral-300 active:bg-neutral-300 transition-colors rounded-full px-6 py-4 items-center justify-center flex-1"
-            onPress={handleEdit}
-          >
-            <Edit size={22} color="#666" />
-          </TouchableOpacity>
-          <TouchableOpacity
+          onPress={handleEdit}
+        >
+            <MaterialIcons name="edit" size={22} color="#666" />
+         </TouchableOpacity>
+         <TouchableOpacity
             className="bg-neutral-200 hover:bg-neutral-300 active:bg-neutral-300 transition-colors rounded-full px-6 py-4 items-center justify-center flex-1"
             onPress={handleStart}
-          >
-            <Play size={22} color="#333" />
-          </TouchableOpacity>
+         >
+            <MaterialIcons name="play-arrow" size={22} color="#333" />
+         </TouchableOpacity>
         </View>
       </Animated.View>
     );
@@ -245,7 +235,7 @@ export default function StackTimer() {
             className="p-3"
             onPress={() => setMode('delete')}
           >
-            <Trash size={20} color="#666" />
+            <MaterialIcons name="delete" size={20} color="#666" />
           </TouchableOpacity>
         </View>
 
@@ -277,7 +267,7 @@ export default function StackTimer() {
             className="w-12 h-12 md:w-14 md:h-14 items-center justify-center"
             onPress={() => adjustDuration(false)}
           >
-            <Minus size={24} color="#666" />
+            <MaterialIcons name="remove" size={24} color="#666" />
           </TouchableOpacity>
           <View className="flex-1 items-center">
             <View className="flex-row items-baseline justify-center">
@@ -298,7 +288,7 @@ export default function StackTimer() {
             className="w-12 h-12 md:w-14 md:h-14 items-center justify-center"
             onPress={() => adjustDuration(true)}
           >
-            <Plus size={24} color="#666" />
+            <MaterialIcons name="add" size={24} color="#666" />
           </TouchableOpacity>
         </View>
 
@@ -306,17 +296,17 @@ export default function StackTimer() {
         <View className="flex-row space-x-3">
           <TouchableOpacity
             className="bg-neutral-200 hover:bg-neutral-300 active:bg-neutral-300 transition-colors rounded-full px-6 py-4 items-center justify-center flex-1"
-            onPress={handleCancel}
-          >
-            <X size={22} color="#666" />
-          </TouchableOpacity>
+          onPress={handleCancel}
+        >
+            <MaterialIcons name="close" size={22} color="#666" />
+         </TouchableOpacity>
 
-          <TouchableOpacity
+         <TouchableOpacity
             className="bg-neutral-200 hover:bg-neutral-300 active:bg-neutral-300 transition-colors rounded-full px-6 py-4 items-center justify-center flex-1"
             onPress={handleSave}
-          >
-            <ThumbsUp size={22} color="#333" />
-          </TouchableOpacity>
+         >
+            <MaterialIcons name="thumb-up" size={22} color="#333" />
+         </TouchableOpacity>
         </View>
       </Animated.View>
     );
@@ -350,17 +340,21 @@ export default function StackTimer() {
         <View className="flex-row space-x-3 w-full">
           <TouchableOpacity 
             className="bg-neutral-200 hover:bg-neutral-300 active:bg-neutral-300 transition-colors rounded-full px-6 py-4 items-center justify-center flex-1"
-            onPress={handleTimerCancel}
-          >
-            <X size={22} color="#666" />
-          </TouchableOpacity>
+          onPress={handleTimerCancel}
+         >
+            <MaterialIcons name="close" size={22} color="#666" />
+         </TouchableOpacity>
           
           <TouchableOpacity 
             className="bg-neutral-200 hover:bg-neutral-300 active:bg-neutral-300 transition-colors rounded-full px-6 py-4 items-center justify-center flex-1"
             onPress={handlePause}
-          >
-            {paused ? <Play size={22} color="#333" /> : <Pause size={22} color="#333" />}
-          </TouchableOpacity>
+         >
+            {paused ? (
+              <MaterialIcons name="play-arrow" size={22} color="#333" />
+            ) : (
+              <MaterialIcons name="pause" size={22} color="#333" />
+            )}
+         </TouchableOpacity>
         </View>
       </Animated.View>
     );
@@ -381,7 +375,7 @@ export default function StackTimer() {
               className="absolute top-3 right-3 p-3"
               onPress={handleBreakAgree}
             >
-              <Edit size={20} color="#666" />
+              <MaterialIcons name="edit" size={20} color="#666" />
             </TouchableOpacity>
             {/* Header and description without any time display */}
             <Text className="text-2xl md:text-3xl font-medium text-neutral-900 mt-6 md:mt-6 mb-2">Take a Break?</Text>
@@ -395,14 +389,14 @@ export default function StackTimer() {
                 className="bg-neutral-200 hover:bg-neutral-300 active:bg-neutral-300 transition-colors rounded-full px-6 py-4 items-center justify-center flex-1"
                 onPress={handleBreakCancel}
               >
-                <X size={22} color="#666" />
+                <MaterialIcons name="close" size={22} color="#666" />
               </TouchableOpacity>
               
               <TouchableOpacity 
                 className="bg-neutral-200 hover:bg-neutral-300 active:bg-neutral-300 transition-colors rounded-full px-6 py-4 items-center justify-center flex-1"
                 onPress={handleBreakAgree}
               >
-                <ThumbsUp size={22} color="#333" />
+                <MaterialIcons name="thumb-up" size={22} color="#333" />
               </TouchableOpacity>
             </View>
           </>
@@ -421,7 +415,7 @@ export default function StackTimer() {
                 className="w-12 h-12 md:w-14 md:h-14 items-center justify-center"
                 onPress={() => adjustBreakDuration(false)}
               >
-                <Minus size={24} color="#666" />
+                <MaterialIcons name="remove" size={24} color="#666" />
               </TouchableOpacity>
               <View className="flex-1 items-center">
                 <View className="flex-row items-baseline justify-center">
@@ -441,7 +435,7 @@ export default function StackTimer() {
                 className="w-12 h-12 md:w-14 md:h-14 items-center justify-center"
                 onPress={() => adjustBreakDuration(true)}
               >
-                <Plus size={24} color="#666" />
+                <MaterialIcons name="add" size={24} color="#666" />
               </TouchableOpacity>
             </View>
 
@@ -451,13 +445,13 @@ export default function StackTimer() {
                 className="bg-neutral-200 hover:bg-neutral-300 active:bg-neutral-300 transition-colors rounded-full px-6 py-4 items-center justify-center flex-1"
                 onPress={() => setBreakStage('prompt')}
               >
-                <X size={22} color="#666" />
+                <MaterialIcons name="close" size={22} color="#666" />
               </TouchableOpacity>
               <TouchableOpacity
                 className="bg-neutral-200 hover:bg-neutral-300 active:bg-neutral-300 transition-colors rounded-full px-6 py-4 items-center justify-center flex-1"
                 onPress={handleBreakConfirm}
               >
-                <ThumbsUp size={22} color="#333" />
+                <MaterialIcons name="thumb-up" size={22} color="#333" />
               </TouchableOpacity>
             </View>
           </>
@@ -486,14 +480,18 @@ export default function StackTimer() {
                 className="bg-neutral-200 hover:bg-neutral-300 active:bg-neutral-300 transition-colors rounded-full px-6 py-4 items-center justify-center flex-1"
                 onPress={handleBreakCancel}
               >
-                <X size={22} color="#666" />
+                <MaterialIcons name="close" size={22} color="#666" />
               </TouchableOpacity>
               
               <TouchableOpacity 
                 className="bg-neutral-200 hover:bg-neutral-300 active:bg-neutral-300 transition-colors rounded-full px-6 py-4 items-center justify-center flex-1"
                 onPress={handlePause}
               >
-                {paused ? <Play size={22} color="#333" /> : <Pause size={22} color="#333" />}
+                {paused ? (
+                  <MaterialIcons name="play-arrow" size={22} color="#333" />
+                ) : (
+                  <MaterialIcons name="pause" size={22} color="#333" />
+                )}
               </TouchableOpacity>
             </View>
           </>
@@ -523,7 +521,7 @@ export default function StackTimer() {
             className="bg-neutral-200 hover:bg-neutral-300 active:bg-neutral-300 transition-colors rounded-full px-5 py-3 flex-row items-center space-x-2"
             onPress={() => setMode('view')}
           >
-            <X size={20} color="#666" />
+            <MaterialIcons name="close" size={20} color="#666" />
             <Text className="text-neutral-700 font-medium text-lg md:text-xl">Cancel</Text>
           </TouchableOpacity>
           
@@ -531,7 +529,7 @@ export default function StackTimer() {
             className="bg-red-500 hover:bg-red-600 active:bg-red-600 transition-colors rounded-full px-5 py-3 flex-row items-center space-x-2"
             onLongPress={handleDeleteLongPress}
           >
-            <Trash size={20} color="#fff" />
+            <MaterialIcons name="delete" size={20} color="#fff" />
             <Text className="text-white font-medium text-lg md:text-xl">Delete</Text>
           </Pressable>
         </View>
