@@ -198,9 +198,9 @@ export default function StackTimer() {
       >
         <View className="mb-3">
           <View className={`${colorClasses[color]} rounded-xl w-12 h-12 md:w-14 md:h-14 items-center justify-center`}>
-            <Text className="text-neutral-900 text-2xl md:text-3xl">{taskEmoji}</Text>
+            <Text className="text-neutral-900 text-3xl md:text-3xl">{taskEmoji}</Text>
           </View>
-          <Text className="text-neutral-900 text-lg md:text-xl mt-2">
+          <Text className="text-neutral-900 text-xl md:text-2xl mt-2">
             <Text className="font-semibold">{taskName}</Text>
             <Text> for </Text>
             <Text className="font-semibold">{taskDuration} minutes</Text>
@@ -253,7 +253,7 @@ export default function StackTimer() {
         <TextInput
           value={editTaskName}
           onChangeText={setEditTaskName}
-          className="rounded-xl border border-neutral-200 bg-neutral-50 px-5 py-4 text-neutral-900 text-xl md:text-2xl mb-4"
+          className="rounded-xl border border-neutral-200 bg-neutral-50 px-5 py-4 text-neutral-900 text-2xl md:text-3xl mb-4"
           placeholder="Walk Luna"
           placeholderTextColor={Platform.OS === 'web' ? undefined : '#9CA3AF'}
         />
@@ -288,10 +288,10 @@ export default function StackTimer() {
                 useGrouping={false}
                 enableCompactNotation={false}
                 spinningAnimationConfig={{ duration: 250, easing: Easing.bounce }}
-                numberTextProps={{ className: 'text-4xl md:text-5xl font-semibold text-neutral-900' }}
+                numberTextProps={{ className: 'text-5xl md:text-5xl font-semibold text-neutral-900' }}
               />
-              <Text className="text-4xl md:text-5xl font-semibold text-neutral-900 mx-1">:</Text>
-              <Text className="text-4xl md:text-5xl font-semibold text-neutral-900">00</Text>
+              <Text className="text-5xl md:text-5xl font-semibold text-neutral-900 mx-1">:</Text>
+              <Text className="text-5xl md:text-5xl font-semibold text-neutral-900">00</Text>
             </View>
           </View>
           <TouchableOpacity
@@ -337,13 +337,13 @@ export default function StackTimer() {
             className="absolute -top-6 left-1/2 -translate-x-1/2 items-center"
           >
             <View className="bg-neutral-900 rounded-full px-3 py-1 shadow-sm">
-              <Text className="text-white text-sm">finish</Text>
+              <Text className="text-white text-base">finish</Text>
             </View>
             <View className="w-2 h-2 bg-neutral-900 rotate-45 mt-[-2]" />
           </Animated.View>
         )}
 
-        <Text className="text-4xl md:text-5xl font-semibold text-neutral-900 mt-6 md:mt-6 mb-10 md:mb-10">
+        <Text className="text-5xl md:text-5xl font-semibold text-neutral-900 mt-6 md:mt-6 mb-10 md:mb-10">
           {formatTime(timeLeft)}
         </Text>
         
@@ -384,8 +384,8 @@ export default function StackTimer() {
               <Edit size={20} color="#666" />
             </TouchableOpacity>
             {/* Header and description without any time display */}
-            <Text className="text-xl md:text-2xl font-medium text-neutral-900 mt-6 md:mt-6 mb-2">Take a Break?</Text>
-            <Text className="text-neutral-500 text-base md:text-lg mb-6">
+            <Text className="text-2xl md:text-3xl font-medium text-neutral-900 mt-6 md:mt-6 mb-2">Take a Break?</Text>
+            <Text className="text-neutral-500 text-lg md:text-xl mb-6">
               Break for <Text className="font-semibold">{breakDuration} minutes</Text>
             </Text>
 
@@ -411,8 +411,8 @@ export default function StackTimer() {
         {breakStage === 'edit' && (
           <>
             {/* Same header and description as prompt */}
-            <Text className="text-xl md:text-2xl font-medium text-neutral-900 mt-6 md:mt-6 mb-2">Take a Break?</Text>
-            <Text className="text-neutral-500 text-base md:text-lg mb-6">
+            <Text className="text-2xl md:text-3xl font-medium text-neutral-900 mt-6 md:mt-6 mb-2">Take a Break?</Text>
+            <Text className="text-neutral-500 text-lg md:text-xl mb-6">
               Break for <Text className="font-semibold">{breakDuration} minutes</Text>
             </Text>
             {/* Duration controls with same motion effect as edit state */}
@@ -431,10 +431,10 @@ export default function StackTimer() {
                     useGrouping={false}
                     enableCompactNotation={false}
                     spinningAnimationConfig={{ duration: 250, easing: Easing.bounce }}
-                    numberTextProps={{ className: 'text-4xl md:text-5xl font-semibold text-neutral-900' }}
+                    numberTextProps={{ className: 'text-5xl md:text-5xl font-semibold text-neutral-900' }}
                   />
-                  <Text className="text-4xl md:text-5xl font-semibold text-neutral-900 mx-1">:</Text>
-                  <Text className="text-4xl md:text-5xl font-semibold text-neutral-900">00</Text>
+                  <Text className="text-5xl md:text-5xl font-semibold text-neutral-900 mx-1">:</Text>
+                  <Text className="text-5xl md:text-5xl font-semibold text-neutral-900">00</Text>
                 </View>
               </View>
               <TouchableOpacity
@@ -472,12 +472,12 @@ export default function StackTimer() {
                 className="absolute -top-6 left-1/2 -translate-x-1/2 items-center"
               >
                 <View className="bg-neutral-900 rounded-full px-3 py-1 shadow-sm">
-                  <Text className="text-white text-sm">finish</Text>
+                  <Text className="text-white text-base">finish</Text>
                 </View>
                 <View className="w-2 h-2 bg-neutral-900 rotate-45 mt-[-2]" />
               </Animated.View>
             )}
-            <Text className="text-4xl md:text-5xl font-semibold text-neutral-900 mt-6 md:mt-6 mb-10 md:mb-10">
+            <Text className="text-5xl md:text-5xl font-semibold text-neutral-900 mt-6 md:mt-6 mb-10 md:mb-10">
               {formatTime(breakTimeLeft)}
             </Text>
 
@@ -511,10 +511,10 @@ export default function StackTimer() {
         style={shakeStyle}
         className="bg-white rounded-2xl p-6 md:p-7 shadow-sm w-full sm:max-w-sm md:max-w-md lg:max-w-lg self-center"
       >
-        <Text className="text-xl md:text-2xl font-medium text-neutral-900 mb-2 text-center">
+        <Text className="text-2xl md:text-3xl font-medium text-neutral-900 mb-2 text-center">
           Delete task?
         </Text>
-        <Text className="text-neutral-500 text-base md:text-lg mb-6 text-center">
+        <Text className="text-neutral-500 text-lg md:text-xl mb-6 text-center">
           This action cannot be undone, hold to confirm.
         </Text>
         
@@ -524,7 +524,7 @@ export default function StackTimer() {
             onPress={() => setMode('view')}
           >
             <X size={20} color="#666" />
-            <Text className="text-neutral-700 font-medium text-base md:text-lg">Cancel</Text>
+            <Text className="text-neutral-700 font-medium text-lg md:text-xl">Cancel</Text>
           </TouchableOpacity>
           
           <Pressable 
@@ -532,7 +532,7 @@ export default function StackTimer() {
             onLongPress={handleDeleteLongPress}
           >
             <Trash size={20} color="#fff" />
-            <Text className="text-white font-medium text-base md:text-lg">Delete</Text>
+            <Text className="text-white font-medium text-lg md:text-xl">Delete</Text>
           </Pressable>
         </View>
       </Animated.View>
