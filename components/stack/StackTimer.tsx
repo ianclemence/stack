@@ -311,36 +311,40 @@ export default function StackTimer() {
         entering={FadeIn.duration(300)}
         exiting={FadeOut.duration(300)}
         layout={Layout.springify()}
-        className="bg-white rounded-2xl p-6 md:p-7 shadow-sm w-full sm:max-w-sm md:max-w-md lg:max-w-lg self-center items-center"
+        className="bg-white rounded-2xl p-6 md:p-7 shadow-sm w-full sm:max-w-sm md:max-w-md lg:max-w-lg self-center items-center relative"
       >
-        <Text className="text-5xl md:text-6xl font-semibold text-neutral-900 mb-6">
-          {formatTime(timeLeft)}
-        </Text>
-        
-        <View className="flex-row space-x-3">
-          <TouchableOpacity 
-            className="bg-neutral-200 hover:bg-neutral-300 active:bg-neutral-300 transition-colors rounded-full p-4"
-            onPress={handleTimerCancel}
-          >
-            <X size={28} color="#666" />
-          </TouchableOpacity>
-          
-          <TouchableOpacity 
-            className="bg-neutral-900 hover:bg-neutral-800 active:bg-neutral-800 transition-colors rounded-full p-4"
-            onPress={handlePause}
-          >
-            {paused ? <Play size={28} color="#fff" /> : <Pause size={28} color="#fff" />}
-          </TouchableOpacity>
-        </View>
-        
+        {/* Near-completion tooltip */}
         {timeLeft <= 60 && (
           <Animated.View 
             entering={FadeIn.duration(300)}
-            className="mt-4"
+            className="absolute -top-6 left-1/2 -translate-x-1/2 items-center"
           >
-            <Text className="text-neutral-500 text-base md:text-lg">Almost done!</Text>
+            <View className="bg-neutral-900 rounded-full px-3 py-1 shadow-sm">
+              <Text className="text-white text-sm">finish</Text>
+            </View>
+            <View className="w-2 h-2 bg-neutral-900 rotate-45 mt-[-2]" />
           </Animated.View>
         )}
+
+        <Text className="text-4xl md:text-5xl font-semibold text-neutral-900 mb-10 md:mb-10">
+          {formatTime(timeLeft)}
+        </Text>
+        
+        <View className="flex-row space-x-3 w-full">
+          <TouchableOpacity 
+            className="bg-neutral-200 hover:bg-neutral-300 active:bg-neutral-300 transition-colors rounded-full px-6 py-4 items-center justify-center flex-1"
+            onPress={handleTimerCancel}
+          >
+            <X size={22} color="#666" />
+          </TouchableOpacity>
+          
+          <TouchableOpacity 
+            className="bg-neutral-200 hover:bg-neutral-300 active:bg-neutral-300 transition-colors rounded-full px-6 py-4 items-center justify-center flex-1"
+            onPress={handlePause}
+          >
+            {paused ? <Play size={22} color="#333" /> : <Pause size={22} color="#333" />}
+          </TouchableOpacity>
+        </View>
       </Animated.View>
     );
   }
