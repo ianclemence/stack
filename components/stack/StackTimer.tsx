@@ -372,7 +372,7 @@ export default function StackTimer() {
         entering={FadeIn.duration(300)}
         exiting={FadeOut.duration(300)}
         layout={Layout.springify()}
-        className="bg-white rounded-2xl p-6 md:p-7 shadow-sm w-full sm:max-w-sm md:max-w-md lg:max-w-lg self-center items-center"
+        className="bg-white rounded-2xl p-6 md:p-7 shadow-sm w-full sm:max-w-sm md:max-w-md lg:max-w-lg self-center items-center relative"
       >
         {breakStage === 'prompt' && (
           <>
@@ -454,6 +454,18 @@ export default function StackTimer() {
 
         {breakStage === 'countdown' && (
           <>
+            {/* Near-completion tooltip (match timer) */}
+            {breakTimeLeft <= 60 && (
+              <Animated.View 
+                entering={FadeIn.duration(300)}
+                className="absolute -top-6 left-1/2 -translate-x-1/2 items-center"
+              >
+                <View className="bg-neutral-900 rounded-full px-3 py-1 shadow-sm">
+                  <Text className="text-white text-sm">finish</Text>
+                </View>
+                <View className="w-2 h-2 bg-neutral-900 rotate-45 mt-[-2]" />
+              </Animated.View>
+            )}
             <Text className="text-4xl md:text-5xl font-semibold text-neutral-900 mt-6 md:mt-6 mb-10 md:mb-10">
               {formatTime(breakTimeLeft)}
             </Text>
