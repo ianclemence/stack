@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, TextInput, Pressable } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput, Pressable, Platform } from 'react-native';
 import Animated, { 
   FadeIn, 
   FadeOut, 
@@ -20,7 +20,7 @@ import {
   Plus, 
   Minus 
 } from 'lucide-react-native';
-import { EmojiPopup } from 'react-native-emoji-popup';
+import EmojiSelector from './EmojiSelector';
 
 type Mode = 'view' | 'edit' | 'timer' | 'break' | 'delete';
 type ColorOption = 'red' | 'orange' | 'yellow' | 'green' | 'blue' | 'purple' | 'pink';
@@ -223,15 +223,10 @@ export default function StackTimer() {
         
         <Text className="text-neutral-700 mb-2">Emoji</Text>
         <View className="mb-4">
-          <EmojiPopup 
-            onEmojiSelected={setEditTaskEmoji}
-            style={{ alignSelf: 'flex-start' }}
-          >
-            <View className="bg-neutral-50 rounded-lg p-3 flex-row items-center space-x-2">
-              <Text className="text-2xl">{editTaskEmoji}</Text>
-              <Text className="text-neutral-600">Tap to change emoji</Text>
-            </View>
-          </EmojiPopup>
+          <EmojiSelector 
+            emoji={editTaskEmoji}
+            onEmojiChange={setEditTaskEmoji}
+          />
         </View>
         
         <Text className="text-neutral-700 mb-2">Color</Text>
