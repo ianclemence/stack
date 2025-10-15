@@ -18,7 +18,8 @@ import {
   X, 
   Check, 
   Plus, 
-  Minus 
+  Minus,
+  ThumbsUp
 } from 'lucide-react-native';
 import EmojiSelector from './EmojiSelector';
 
@@ -212,69 +213,79 @@ export default function StackTimer() {
         layout={Layout.springify()}
         className="bg-white rounded-2xl p-5 shadow-sm w-full max-w-sm self-center"
       >
-        <Text className="text-lg font-medium text-neutral-900 mb-4">Edit Task</Text>
-        
+        {/* Header: emoji tile and delete icon */}
+        <View className="flex-row items-center justify-between mb-3">
+          <View className="bg-neutral-50 rounded-xl p-2">
+            <EmojiSelector
+              emoji={editTaskEmoji}
+              onEmojiChange={setEditTaskEmoji}
+              styleVariant="compact"
+            />
+          </View>
+          <TouchableOpacity
+            className="bg-neutral-100 rounded-full p-2"
+            onPress={() => setMode('delete')}
+          >
+            <Trash size={16} color="#666" />
+          </TouchableOpacity>
+        </View>
+
+        {/* Task name input */}
         <TextInput
           value={editTaskName}
           onChangeText={setEditTaskName}
-          className="bg-neutral-50 rounded-lg p-3 text-neutral-900 mb-4"
-          placeholder="Task name"
+          className="rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-3 text-neutral-900 mb-4"
+          placeholder="Walk Luna"
+          placeholderTextColor={Platform.OS === 'web' ? undefined : '#9CA3AF'}
         />
-        
-        <Text className="text-neutral-700 mb-2">Emoji</Text>
-        <View className="mb-4">
-          <EmojiSelector 
-            emoji={editTaskEmoji}
-            onEmojiChange={setEditTaskEmoji}
-          />
-        </View>
-        
-        <Text className="text-neutral-700 mb-2">Color</Text>
-        <View className="flex-row space-x-2 mb-4">
+
+        {/* Color palette */}
+        <View className="flex-row items-center justify-between mb-4">
           {colorOptions.map((colorOption) => (
             <TouchableOpacity
               key={colorOption}
-              className={`w-8 h-8 rounded-full ${colorClasses[colorOption]} ${
+              className={`w-8 h-8 rounded-full ${colorClasses[colorOption]} border-2 border-white ${
                 editColor === colorOption ? 'ring-2 ring-neutral-400' : ''
               }`}
               onPress={() => setEditColor(colorOption)}
             />
           ))}
         </View>
-        
-        <Text className="text-neutral-700 mb-2">Duration</Text>
-        <View className="flex-row items-center justify-center space-x-4 mb-6">
-          <TouchableOpacity 
-            className="bg-neutral-100 rounded-full p-2"
+
+        {/* Duration controls */}
+        <View className="flex-row items-center justify-center space-x-8 mb-6">
+          <TouchableOpacity
+            className="bg-neutral-100 rounded-full p-3"
             onPress={() => adjustDuration(false)}
           >
             <Minus size={20} color="#666" />
           </TouchableOpacity>
-          <Text className="text-2xl font-semibold text-neutral-900 min-w-[80px] text-center">
+          <Text className="text-3xl font-semibold text-neutral-900 min-w-[90px] text-center">
             {editDuration}:00
           </Text>
-          <TouchableOpacity 
-            className="bg-neutral-100 rounded-full p-2"
+          <TouchableOpacity
+            className="bg-neutral-100 rounded-full p-3"
             onPress={() => adjustDuration(true)}
           >
             <Plus size={20} color="#666" />
           </TouchableOpacity>
         </View>
-        
+
+        {/* Footer actions */}
         <View className="flex-row justify-between">
-          <TouchableOpacity 
+          <TouchableOpacity
             className="bg-neutral-100 rounded-full px-4 py-2 flex-row items-center space-x-2"
             onPress={handleCancel}
           >
             <X size={16} color="#666" />
             <Text className="text-neutral-700 font-medium">Cancel</Text>
           </TouchableOpacity>
-          
-          <TouchableOpacity 
+
+          <TouchableOpacity
             className="bg-neutral-900 rounded-full px-4 py-2 flex-row items-center space-x-2"
             onPress={handleSave}
           >
-            <Check size={16} color="#fff" />
+            <ThumbsUp size={16} color="#fff" />
             <Text className="text-white font-medium">Save</Text>
           </TouchableOpacity>
         </View>
