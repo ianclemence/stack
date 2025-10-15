@@ -326,7 +326,7 @@ export default function StackTimer() {
           </Animated.View>
         )}
 
-        <Text className="text-4xl md:text-5xl font-semibold text-neutral-900 mb-10 md:mb-10">
+        <Text className="text-4xl md:text-5xl font-semibold text-neutral-900 mt-6 md:mt-6 mb-10 md:mb-10">
           {formatTime(timeLeft)}
         </Text>
         
