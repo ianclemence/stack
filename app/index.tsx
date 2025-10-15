@@ -4,10 +4,6 @@ import StackTimer from '@/components/stack/StackTimer';
 export default function RootScreen() {
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.title}>Stack</Text>
-        <Text style={styles.subtitle}>Focus Timer</Text>
-      </View>
       <StackTimer />
     </View>
   );
