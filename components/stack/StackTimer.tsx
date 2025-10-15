@@ -171,13 +171,13 @@ export default function StackTimer() {
         entering={FadeIn.duration(300)}
         exiting={FadeOut.duration(300)}
         layout={Layout.springify()}
-        className="bg-white rounded-2xl p-5 shadow-sm w-full max-w-sm self-center"
+        className="bg-white rounded-2xl p-6 md:p-7 shadow-sm w-full sm:max-w-sm md:max-w-md lg:max-w-lg self-center"
       >
         <View className="mb-3">
-          <View className={`${colorClasses[color]} rounded-xl w-9 h-9 items-center justify-center`}>
-            <Text className="text-neutral-900 text-lg">{taskEmoji}</Text>
+          <View className={`${colorClasses[color]} rounded-xl w-12 h-12 md:w-14 md:h-14 items-center justify-center`}>
+            <Text className="text-neutral-900 text-2xl md:text-3xl">{taskEmoji}</Text>
           </View>
-          <Text className="text-neutral-900 text-base mt-2">
+          <Text className="text-neutral-900 text-lg md:text-xl mt-2">
             <Text className="font-semibold">{taskName}</Text>
             <Text> for </Text>
             <Text className="font-semibold">{taskDuration} minutes</Text>
@@ -186,16 +186,16 @@ export default function StackTimer() {
 
         <View className="flex-row space-x-3">
           <TouchableOpacity
-            className="bg-neutral-100 rounded-full px-5 py-3 items-center justify-center flex-1"
+            className="bg-neutral-200 hover:bg-neutral-300 active:bg-neutral-300 transition-colors rounded-full px-6 py-4 items-center justify-center flex-1"
             onPress={handleEdit}
           >
-            <Edit size={18} color="#666" />
+            <Edit size={22} color="#666" />
           </TouchableOpacity>
           <TouchableOpacity
-            className="bg-neutral-100 rounded-full px-5 py-3 items-center justify-center flex-1"
+            className="bg-neutral-200 hover:bg-neutral-300 active:bg-neutral-300 transition-colors rounded-full px-6 py-4 items-center justify-center flex-1"
             onPress={handleStart}
           >
-            <Play size={18} color="#333" />
+            <Play size={22} color="#333" />
           </TouchableOpacity>
         </View>
       </Animated.View>
@@ -208,7 +208,7 @@ export default function StackTimer() {
         entering={FadeIn.duration(300)}
         exiting={FadeOut.duration(300)}
         layout={Layout.springify()}
-        className="bg-white rounded-2xl p-5 shadow-sm w-full max-w-sm self-center"
+        className="bg-white rounded-2xl p-6 md:p-7 shadow-sm w-full sm:max-w-sm md:max-w-md lg:max-w-lg self-center"
       >
         {/* Header: emoji tile and delete icon */}
         <View className="flex-row items-center justify-between mb-3">
@@ -219,10 +219,10 @@ export default function StackTimer() {
             backgroundClass={colorClasses[editColor]}
           />
           <TouchableOpacity
-            className="p-2"
+            className="p-3"
             onPress={() => setMode('delete')}
           >
-            <Trash size={16} color="#666" />
+            <Trash size={20} color="#666" />
           </TouchableOpacity>
         </View>
 
@@ -230,7 +230,7 @@ export default function StackTimer() {
         <TextInput
           value={editTaskName}
           onChangeText={setEditTaskName}
-          className="rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-3 text-neutral-900 mb-4"
+          className="rounded-xl border border-neutral-200 bg-neutral-50 px-5 py-4 text-neutral-900 text-xl md:text-2xl mb-4"
           placeholder="Walk Luna"
           placeholderTextColor={Platform.OS === 'web' ? undefined : '#9CA3AF'}
         />
@@ -240,7 +240,7 @@ export default function StackTimer() {
           {colorOptions.map((colorOption) => (
             <TouchableOpacity
               key={colorOption}
-              className={`w-8 h-8 rounded-full ${colorClasses[colorOption]} border-2 border-white ${
+              className={`w-9 h-9 md:w-10 md:h-10 rounded-full ${colorClasses[colorOption]} border-2 border-white ${
                 editColor === colorOption ? 'ring-2 ring-neutral-400' : ''
               }`}
               onPress={() => setEditColor(colorOption)}
@@ -251,36 +251,36 @@ export default function StackTimer() {
         {/* Duration controls */}
         <View className="flex-row items-center justify-between w-full mb-6">
           <TouchableOpacity
-            className="w-10 h-10 items-center justify-center"
+            className="w-12 h-12 md:w-14 md:h-14 items-center justify-center"
             onPress={() => adjustDuration(false)}
           >
-            <Minus size={20} color="#666" />
+            <Minus size={24} color="#666" />
           </TouchableOpacity>
-          <Text className="flex-1 text-3xl font-semibold text-neutral-900 text-center">
+          <Text className="flex-1 text-4xl md:text-5xl font-semibold text-neutral-900 text-center">
             {editDuration}:00
           </Text>
           <TouchableOpacity
-            className="w-10 h-10 items-center justify-center"
+            className="w-12 h-12 md:w-14 md:h-14 items-center justify-center"
             onPress={() => adjustDuration(true)}
           >
-            <Plus size={20} color="#666" />
+            <Plus size={24} color="#666" />
           </TouchableOpacity>
         </View>
 
         {/* Footer actions */}
         <View className="flex-row space-x-3">
           <TouchableOpacity
-            className="bg-neutral-100 rounded-full px-5 py-3 items-center justify-center flex-1"
+            className="bg-neutral-200 hover:bg-neutral-300 active:bg-neutral-300 transition-colors rounded-full px-6 py-4 items-center justify-center flex-1"
             onPress={handleCancel}
           >
-            <X size={18} color="#666" />
+            <X size={22} color="#666" />
           </TouchableOpacity>
 
           <TouchableOpacity
-            className="bg-neutral-100 rounded-full px-5 py-3 items-center justify-center flex-1"
+            className="bg-neutral-200 hover:bg-neutral-300 active:bg-neutral-300 transition-colors rounded-full px-6 py-4 items-center justify-center flex-1"
             onPress={handleSave}
           >
-            <ThumbsUp size={18} color="#333" />
+            <ThumbsUp size={22} color="#333" />
           </TouchableOpacity>
         </View>
       </Animated.View>
@@ -293,25 +293,25 @@ export default function StackTimer() {
         entering={FadeIn.duration(300)}
         exiting={FadeOut.duration(300)}
         layout={Layout.springify()}
-        className="bg-white rounded-2xl p-5 shadow-sm w-full max-w-sm self-center items-center"
+        className="bg-white rounded-2xl p-6 md:p-7 shadow-sm w-full sm:max-w-sm md:max-w-md lg:max-w-lg self-center items-center"
       >
-        <Text className="text-4xl font-semibold text-neutral-900 mb-6">
+        <Text className="text-5xl md:text-6xl font-semibold text-neutral-900 mb-6">
           {formatTime(timeLeft)}
         </Text>
         
         <View className="flex-row space-x-3">
           <TouchableOpacity 
-            className="bg-neutral-100 rounded-full p-3"
+            className="bg-neutral-200 hover:bg-neutral-300 active:bg-neutral-300 transition-colors rounded-full p-4"
             onPress={handleTimerCancel}
           >
-            <X size={24} color="#666" />
+            <X size={28} color="#666" />
           </TouchableOpacity>
           
           <TouchableOpacity 
-            className="bg-neutral-900 rounded-full p-3"
+            className="bg-neutral-900 hover:bg-neutral-800 active:bg-neutral-800 transition-colors rounded-full p-4"
             onPress={handlePause}
           >
-            {paused ? <Play size={24} color="#fff" /> : <Pause size={24} color="#fff" />}
+            {paused ? <Play size={28} color="#fff" /> : <Pause size={28} color="#fff" />}
           </TouchableOpacity>
         </View>
         
@@ -320,7 +320,7 @@ export default function StackTimer() {
             entering={FadeIn.duration(300)}
             className="mt-4"
           >
-            <Text className="text-neutral-500 text-sm">Almost done!</Text>
+            <Text className="text-neutral-500 text-base md:text-lg">Almost done!</Text>
           </Animated.View>
         )}
       </Animated.View>
@@ -333,48 +333,48 @@ export default function StackTimer() {
         entering={FadeIn.duration(300)}
         exiting={FadeOut.duration(300)}
         layout={Layout.springify()}
-        className="bg-white rounded-2xl p-5 shadow-sm w-full max-w-sm self-center items-center"
+        className="bg-white rounded-2xl p-6 md:p-7 shadow-sm w-full sm:max-w-sm md:max-w-md lg:max-w-lg self-center items-center"
       >
-        <Text className="text-lg font-medium text-neutral-900 mb-2">Take a Break?</Text>
-        <Text className="text-neutral-500 text-sm mb-4">Break for {breakDuration} minutes</Text>
+        <Text className="text-xl md:text-2xl font-medium text-neutral-900 mb-2">Take a Break?</Text>
+        <Text className="text-neutral-500 text-base md:text-lg mb-4">Break for {breakDuration} minutes</Text>
         
-        <Text className="text-3xl font-semibold text-neutral-900 mb-4">
+        <Text className="text-4xl md:text-5xl font-semibold text-neutral-900 mb-4">
           {formatTime(breakTimeLeft)}
         </Text>
         
         <View className="flex-row items-center space-x-4 mb-6">
           <TouchableOpacity 
-            className="bg-neutral-100 rounded-full p-2"
+            className="bg-neutral-200 hover:bg-neutral-300 active:bg-neutral-300 transition-colors rounded-full p-3"
             onPress={() => adjustBreakDuration(false)}
           >
-            <Minus size={16} color="#666" />
+            <Minus size={20} color="#666" />
           </TouchableOpacity>
-          <Text className="text-lg font-medium text-neutral-900 min-w-[60px] text-center">
+          <Text className="text-xl md:text-2xl font-medium text-neutral-900 min-w-[72px] text-center">
             {breakDuration}:00
           </Text>
           <TouchableOpacity 
-            className="bg-neutral-100 rounded-full p-2"
+            className="bg-neutral-200 hover:bg-neutral-300 active:bg-neutral-300 transition-colors rounded-full p-3"
             onPress={() => adjustBreakDuration(true)}
           >
-            <Plus size={16} color="#666" />
+            <Plus size={20} color="#666" />
           </TouchableOpacity>
         </View>
         
         <View className="flex-row space-x-4">
           <TouchableOpacity 
-            className="bg-neutral-100 rounded-full px-4 py-2 flex-row items-center space-x-2"
+            className="bg-neutral-200 hover:bg-neutral-300 active:bg-neutral-300 transition-colors rounded-full px-5 py-3 flex-row items-center space-x-2"
             onPress={handleBreakCancel}
           >
-            <X size={16} color="#666" />
-            <Text className="text-neutral-700 font-medium">Cancel</Text>
+            <X size={20} color="#666" />
+            <Text className="text-neutral-700 font-medium text-base md:text-lg">Cancel</Text>
           </TouchableOpacity>
           
           <TouchableOpacity 
-            className="bg-neutral-900 rounded-full px-4 py-2 flex-row items-center space-x-2"
+            className="bg-neutral-900 hover:bg-neutral-800 active:bg-neutral-800 transition-colors rounded-full px-5 py-3 flex-row items-center space-x-2"
             onPress={handleBreakConfirm}
           >
-            <Check size={16} color="#fff" />
-            <Text className="text-white font-medium">Confirm</Text>
+            <Check size={20} color="#fff" />
+            <Text className="text-white font-medium text-base md:text-lg">Confirm</Text>
           </TouchableOpacity>
         </View>
       </Animated.View>
@@ -388,30 +388,30 @@ export default function StackTimer() {
         exiting={FadeOut.duration(300)}
         layout={Layout.springify()}
         style={shakeStyle}
-        className="bg-white rounded-2xl p-5 shadow-sm w-full max-w-sm self-center"
+        className="bg-white rounded-2xl p-6 md:p-7 shadow-sm w-full sm:max-w-sm md:max-w-md lg:max-w-lg self-center"
       >
-        <Text className="text-lg font-medium text-neutral-900 mb-2 text-center">
+        <Text className="text-xl md:text-2xl font-medium text-neutral-900 mb-2 text-center">
           Delete task?
         </Text>
-        <Text className="text-neutral-500 text-sm mb-6 text-center">
+        <Text className="text-neutral-500 text-base md:text-lg mb-6 text-center">
           This action cannot be undone, hold to confirm.
         </Text>
         
         <View className="flex-row justify-between">
           <TouchableOpacity 
-            className="bg-neutral-100 rounded-full px-4 py-2 flex-row items-center space-x-2"
+            className="bg-neutral-200 hover:bg-neutral-300 active:bg-neutral-300 transition-colors rounded-full px-5 py-3 flex-row items-center space-x-2"
             onPress={() => setMode('view')}
           >
-            <X size={16} color="#666" />
-            <Text className="text-neutral-700 font-medium">Cancel</Text>
+            <X size={20} color="#666" />
+            <Text className="text-neutral-700 font-medium text-base md:text-lg">Cancel</Text>
           </TouchableOpacity>
           
           <Pressable 
-            className="bg-red-500 rounded-full px-4 py-2 flex-row items-center space-x-2"
+            className="bg-red-500 hover:bg-red-600 active:bg-red-600 transition-colors rounded-full px-5 py-3 flex-row items-center space-x-2"
             onLongPress={handleDeleteLongPress}
           >
-            <Trash size={16} color="#fff" />
-            <Text className="text-white font-medium">Delete</Text>
+            <Trash size={20} color="#fff" />
+            <Text className="text-white font-medium text-base md:text-lg">Delete</Text>
           </Pressable>
         </View>
       </Animated.View>

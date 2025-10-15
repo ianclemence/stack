@@ -17,8 +17,8 @@ export default function EmojiSelector({ emoji, onEmojiChange, styleVariant = 'de
     <TouchableOpacity
       className={
         isCompact
-          ? `${backgroundClass ?? 'bg-neutral-50'} rounded-xl p-2 items-center justify-center`
-          : `${backgroundClass ?? 'bg-neutral-50'} rounded-lg p-3 flex-row items-center space-x-2`
+          ? `${backgroundClass ?? 'bg-neutral-50'} rounded-xl p-3 md:p-4 items-center justify-center`
+          : `${backgroundClass ?? 'bg-neutral-50'} rounded-lg p-4 md:p-5 flex-row items-center space-x-2`
       }
       onPress={() => {
         const currentIndex = commonEmojis.indexOf(emoji);
@@ -26,9 +26,9 @@ export default function EmojiSelector({ emoji, onEmojiChange, styleVariant = 'de
         onEmojiChange(commonEmojis[nextIndex]);
       }}
     >
-      <Text className={isCompact ? 'text-xl' : 'text-2xl'}>{emoji}</Text>
+      <Text className={isCompact ? 'text-2xl md:text-3xl' : 'text-3xl md:text-4xl'}>{emoji}</Text>
       {!isCompact && (
-        <Text className="text-neutral-600">Tap to cycle emojis</Text>
+        <Text className="text-neutral-600 text-base md:text-lg">Tap to cycle emojis</Text>
       )}
     </TouchableOpacity>
   );
