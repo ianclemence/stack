@@ -109,10 +109,11 @@ export default function StackTimer() {
 
   const handleSave = () => {
     setTaskName(editTaskName);
-    setTaskDuration(editDuration);
+    const normalizedDuration = Math.max(1, Math.min(60, editDuration));
+    setTaskDuration(normalizedDuration);
     setColor(editColor);
     setTaskEmoji(editTaskEmoji);
-    setTimeLeft(editDuration * 60);
+    setTimeLeft(normalizedDuration * 60);
     setMode('view');
   };
 
@@ -160,7 +161,10 @@ export default function StackTimer() {
   };
 
   const adjustDuration = (increment: boolean) => {
-    setEditDuration(prev => Math.max(1, increment ? prev + 1 : prev - 1));
+    setEditDuration(prev => {
+      const next = increment ? prev + 1 : prev - 1;
+      return Math.max(1, Math.min(60, next));
+    });
   };
 
   const adjustBreakDuration = (increment: boolean) => {
@@ -259,26 +263,18 @@ export default function StackTimer() {
             <Minus size={24} color="#666" />
           </TouchableOpacity>
           <View className="flex-1 items-center">
-            <Text className="text-neutral-500 text-base md:text-lg mb-1">Duration</Text>
             <View className="flex-row items-baseline justify-center">
-              {/* Hours */}
+              {/* Minutes only (MM:SS) */}
               <AnimatedRollingNumber
-                value={Math.floor(editDuration / 60)}
+                value={editDuration}
+                formattedText={String(editDuration).padStart(2, '0')}
                 useGrouping={false}
                 enableCompactNotation={false}
                 spinningAnimationConfig={{ duration: 250, easing: Easing.bounce }}
                 numberTextProps={{ className: 'text-4xl md:text-5xl font-semibold text-neutral-900' }}
               />
               <Text className="text-4xl md:text-5xl font-semibold text-neutral-900 mx-1">:</Text>
-              {/* Minutes with leading zero */}
-              <AnimatedRollingNumber
-                value={editDuration % 60}
-                formattedText={String(editDuration % 60).padStart(2, '0')}
-                useGrouping={false}
-                enableCompactNotation={false}
-                spinningAnimationConfig={{ duration: 250, easing: Easing.bounce }}
-                numberTextProps={{ className: 'text-4xl md:text-5xl font-semibold text-neutral-900' }}
-              />
+              <Text className="text-4xl md:text-5xl font-semibold text-neutral-900">00</Text>
             </View>
           </View>
           <TouchableOpacity
