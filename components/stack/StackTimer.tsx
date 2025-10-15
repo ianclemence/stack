@@ -20,6 +20,7 @@ import {
   Plus, 
   Minus 
 } from 'lucide-react-native';
+import { EmojiPopup } from 'react-native-emoji-popup';
 
 type Mode = 'view' | 'edit' | 'timer' | 'break' | 'delete';
 type ColorOption = 'red' | 'orange' | 'yellow' | 'green' | 'blue' | 'purple' | 'pink';
@@ -47,6 +48,8 @@ export default function StackTimer() {
   const [editDuration, setEditDuration] = useState(taskDuration);
   const [editColor, setEditColor] = useState<ColorOption>(color);
   const [breakDuration, setBreakDuration] = useState(5);
+  const [taskEmoji, setTaskEmoji] = useState('🐕');
+  const [editTaskEmoji, setEditTaskEmoji] = useState(taskEmoji);
 
   const shakeAnimation = useSharedValue(0);
 
@@ -97,6 +100,7 @@ export default function StackTimer() {
     setEditTaskName(taskName);
     setEditDuration(taskDuration);
     setEditColor(color);
+    setEditTaskEmoji(taskEmoji);
     setMode('edit');
   };
 
@@ -104,6 +108,7 @@ export default function StackTimer() {
     setTaskName(editTaskName);
     setTaskDuration(editDuration);
     setColor(editColor);
+    setTaskEmoji(editTaskEmoji);
     setTimeLeft(editDuration * 60);
     setMode('view');
   };
@@ -112,6 +117,7 @@ export default function StackTimer() {
     setEditTaskName(taskName);
     setEditDuration(taskDuration);
     setEditColor(color);
+    setEditTaskEmoji(taskEmoji);
     setMode('view');
   };
 
@@ -168,7 +174,7 @@ export default function StackTimer() {
       >
         <View className="flex-row items-center space-x-3 mb-4">
           <View className={`${colorClasses[color]} p-2 rounded-lg`}>
-            <Text className="text-white text-lg">🐕</Text>
+            <Text className="text-white text-lg">{taskEmoji}</Text>
           </View>
           <View className="flex-1">
             <Text className="text-neutral-900 font-medium text-lg">
@@ -214,6 +220,19 @@ export default function StackTimer() {
           className="bg-neutral-50 rounded-lg p-3 text-neutral-900 mb-4"
           placeholder="Task name"
         />
+        
+        <Text className="text-neutral-700 mb-2">Emoji</Text>
+        <View className="mb-4">
+          <EmojiPopup 
+            onEmojiSelected={setEditTaskEmoji}
+            style={{ alignSelf: 'flex-start' }}
+          >
+            <View className="bg-neutral-50 rounded-lg p-3 flex-row items-center space-x-2">
+              <Text className="text-2xl">{editTaskEmoji}</Text>
+              <Text className="text-neutral-600">Tap to change emoji</Text>
+            </View>
+          </EmojiPopup>
+        </View>
         
         <Text className="text-neutral-700 mb-2">Color</Text>
         <View className="flex-row space-x-2 mb-4">
