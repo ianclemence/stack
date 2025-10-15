@@ -376,6 +376,13 @@ export default function StackTimer() {
       >
         {breakStage === 'prompt' && (
           <>
+            {/* Edit pencil in corner to set break duration */}
+            <TouchableOpacity
+              className="absolute top-3 right-3 p-3"
+              onPress={handleBreakAgree}
+            >
+              <Edit size={20} color="#666" />
+            </TouchableOpacity>
             {/* Header and description without any time display */}
             <Text className="text-xl md:text-2xl font-medium text-neutral-900 mt-6 md:mt-6 mb-2">Take a Break?</Text>
             <Text className="text-neutral-500 text-base md:text-lg mb-6">
@@ -403,7 +410,11 @@ export default function StackTimer() {
 
         {breakStage === 'edit' && (
           <>
-            <Text className="text-xl md:text-2xl font-medium text-neutral-900 mt-6 md:mt-6 mb-6">Set Break Duration</Text>
+            {/* Same header and description as prompt */}
+            <Text className="text-xl md:text-2xl font-medium text-neutral-900 mt-6 md:mt-6 mb-2">Take a Break?</Text>
+            <Text className="text-neutral-500 text-base md:text-lg mb-6">
+              Break for <Text className="font-semibold">{breakDuration} minutes</Text>
+            </Text>
             {/* Duration controls with same motion effect as edit state */}
             <View className="flex-row items-center justify-between w-full mb-6">
               <TouchableOpacity
