@@ -8,8 +8,10 @@ import Animated, {
   useAnimatedStyle,
   withSpring,
   withSequence,
-  withTiming
+  withTiming,
+  Easing
 } from 'react-native-reanimated';
+import { AnimatedRollingNumber } from 'react-native-animated-rolling-numbers';
 import { 
   Play, 
   Pause, 
@@ -256,9 +258,18 @@ export default function StackTimer() {
           >
             <Minus size={24} color="#666" />
           </TouchableOpacity>
-          <Text className="flex-1 text-4xl md:text-5xl font-semibold text-neutral-900 text-center">
-            {editDuration}:00
-          </Text>
+          <View className="flex-1 flex-row items-baseline justify-center">
+            <AnimatedRollingNumber
+              value={editDuration}
+              useGrouping={false}
+              enableCompactNotation={false}
+              spinningAnimationConfig={{ duration: 300, easing: Easing.bounce }}
+              numberTextProps={{ className: 'text-4xl md:text-5xl font-semibold text-neutral-900' }}
+              commaTextProps={{ className: 'text-4xl md:text-5xl font-semibold text-neutral-900' }}
+              dotTextProps={{ className: 'text-4xl md:text-5xl font-semibold text-neutral-900' }}
+            />
+            <Text className="text-4xl md:text-5xl font-semibold text-neutral-900 ml-1">:00</Text>
+          </View>
           <TouchableOpacity
             className="w-12 h-12 md:w-14 md:h-14 items-center justify-center"
             onPress={() => adjustDuration(true)}
