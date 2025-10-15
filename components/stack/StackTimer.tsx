@@ -250,18 +250,18 @@ export default function StackTimer() {
         </View>
 
         {/* Duration controls */}
-        <View className="flex-row items-center justify-center space-x-8 mb-6">
+        <View className="flex-row items-center justify-between w-full mb-6">
           <TouchableOpacity
-            className="bg-neutral-100 rounded-full p-3"
+            className="w-10 h-10 items-center justify-center"
             onPress={() => adjustDuration(false)}
           >
             <Minus size={20} color="#666" />
           </TouchableOpacity>
-          <Text className="text-3xl font-semibold text-neutral-900 min-w-[90px] text-center">
+          <Text className="flex-1 text-3xl font-semibold text-neutral-900 text-center">
             {editDuration}:00
           </Text>
           <TouchableOpacity
-            className="bg-neutral-100 rounded-full p-3"
+            className="w-10 h-10 items-center justify-center"
             onPress={() => adjustDuration(true)}
           >
             <Plus size={20} color="#666" />
@@ -269,21 +269,19 @@ export default function StackTimer() {
         </View>
 
         {/* Footer actions */}
-        <View className="flex-row justify-between">
+        <View className="flex-row space-x-3">
           <TouchableOpacity
-            className="bg-neutral-100 rounded-full px-4 py-2 flex-row items-center space-x-2"
+            className="bg-neutral-100 rounded-full px-5 py-3 items-center justify-center flex-1"
             onPress={handleCancel}
           >
-            <X size={16} color="#666" />
-            <Text className="text-neutral-700 font-medium">Cancel</Text>
+            <X size={18} color="#666" />
           </TouchableOpacity>
 
           <TouchableOpacity
-            className="bg-neutral-900 rounded-full px-4 py-2 flex-row items-center space-x-2"
+            className="bg-neutral-100 rounded-full px-5 py-3 items-center justify-center flex-1"
             onPress={handleSave}
           >
-            <ThumbsUp size={16} color="#fff" />
-            <Text className="text-white font-medium">Save</Text>
+            <ThumbsUp size={18} color="#333" />
           </TouchableOpacity>
         </View>
       </Animated.View>
@@ -302,7 +300,7 @@ export default function StackTimer() {
           {formatTime(timeLeft)}
         </Text>
         
-        <View className="flex-row space-x-4">
+        <View className="flex-row space-x-3">
           <TouchableOpacity 
             className="bg-neutral-100 rounded-full p-3"
             onPress={handleTimerCancel}
