@@ -4,16 +4,18 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
 
 ## Get started
 
+This project uses Bun for package management.
+
 1. Install dependencies
 
    ```bash
-   npm install
+   bun install
    ```
 
 2. Start the app
 
    ```bash
-   npx expo start
+   bunx expo start
    ```
 
 In the output, you'll find options to open the app in a
@@ -41,6 +43,42 @@ To learn more about developing your project with Expo, look at the following res
 
 - [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
 - [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+
+## StackTimer component
+
+The core productivity component lives under `components/stack/` and is built with Nativewind v4+.
+
+- Files:
+  - `components/stack/StackTimer.tsx` – Main task timer card and state.
+  - `components/stack/EditTaskModal.tsx` – Full-screen edit modal (emoji, color, duration).
+  - `components/stack/BreakSuggestionModal.tsx` – Break duration selector and confirmation.
+  - `components/stack/DeleteConfirmationModal.tsx` – Hold-to-confirm delete dialog.
+  - `components/stack/EmptyState.tsx` – Empty state with CTA.
+  - `components/stack/utils.ts` – Helper functions and static emoji data.
+
+### Usage
+
+The `StackTimer` is integrated into `app/(tabs)/index.tsx`. If you want to render it elsewhere:
+
+```tsx
+import StackTimer from '@/components/stack/StackTimer';
+
+export default function Screen() {
+  return <StackTimer />;
+}
+```
+
+### Notes
+
+- Nativewind utility classes are used for styling (light mode).
+- Icons are from `@expo/vector-icons`.
+- Haptic feedback leverages `expo-haptics` (optional, but recommended).
+- Emojis are rendered as text; no web-only libraries are used.
+
+### Development
+
+- Start the dev server: `bunx expo start` (press `w` for web preview if needed).
+- Ensure Android/iOS simulators are configured for mobile testing.
 
 ## Join the community
 
