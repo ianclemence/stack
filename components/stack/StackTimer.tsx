@@ -173,32 +173,29 @@ export default function StackTimer() {
         layout={Layout.springify()}
         className="bg-white rounded-2xl p-5 shadow-sm w-full max-w-sm self-center"
       >
-        <View className="flex-row items-center space-x-3 mb-4">
-          <View className={`${colorClasses[color]} p-2 rounded-lg`}>
-            <Text className="text-white text-lg">{taskEmoji}</Text>
+        <View className="mb-3">
+          <View className={`${colorClasses[color]} rounded-xl w-9 h-9 items-center justify-center`}>
+            <Text className="text-neutral-900 text-lg">{taskEmoji}</Text>
           </View>
-          <View className="flex-1">
-            <Text className="text-neutral-900 font-medium text-lg">
-              {taskName} for {taskDuration} minutes
-            </Text>
-          </View>
+          <Text className="text-neutral-900 text-base mt-2">
+            <Text className="font-semibold">{taskName}</Text>
+            <Text> for </Text>
+            <Text className="font-semibold">{taskDuration} minutes</Text>
+          </Text>
         </View>
-        
-        <View className="flex-row justify-between">
-          <TouchableOpacity 
-            className="bg-neutral-100 rounded-full px-4 py-2 flex-row items-center space-x-2"
+
+        <View className="flex-row space-x-3">
+          <TouchableOpacity
+            className="bg-neutral-100 rounded-full px-5 py-3 items-center justify-center flex-1"
             onPress={handleEdit}
           >
-            <Edit size={16} color="#666" />
-            <Text className="text-neutral-700 font-medium">Edit</Text>
+            <Edit size={18} color="#666" />
           </TouchableOpacity>
-          
-          <TouchableOpacity 
-            className="bg-neutral-900 rounded-full px-4 py-2 flex-row items-center space-x-2"
+          <TouchableOpacity
+            className="bg-neutral-100 rounded-full px-5 py-3 items-center justify-center flex-1"
             onPress={handleStart}
           >
-            <Play size={16} color="#fff" />
-            <Text className="text-white font-medium">Start</Text>
+            <Play size={18} color="#333" />
           </TouchableOpacity>
         </View>
       </Animated.View>
